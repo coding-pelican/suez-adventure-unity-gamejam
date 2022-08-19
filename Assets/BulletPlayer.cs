@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour
+public class BulletPlayer : MonoBehaviour
 {
     public float spd = 8f;
     public float zmax = 250f;
+
+    public float dmg = 1f;
 
     // Update is called once per frame
     void FixedUpdate()

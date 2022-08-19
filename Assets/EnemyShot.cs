@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipShot : MonoBehaviour
+public class EnemyShot : MonoBehaviour
 {
     public GameObject prefab_bullet;
+    public float spd = 7f;
+    public float dmg = 1f;
 
     public float cooltime_max = 0.25f;
     float cooltime;
@@ -19,10 +21,12 @@ public class ShipShot : MonoBehaviour
     void Update()
     {
         cooltime -= Time.deltaTime;
+
         if(cooltime <= 0f)
         {
             var bullet = Instantiate(prefab_bullet);
             bullet.transform.position = transform.position;
+            bullet.GetComponent<BulletEnemy>().SetData(spd, Random.Range(-Mathf.PI, 0f), dmg);
 
             cooltime += cooltime_max;
         }

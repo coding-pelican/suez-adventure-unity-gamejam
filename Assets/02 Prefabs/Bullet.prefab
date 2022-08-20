@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spd: 20
-  zmax: 250
+  zmax: 100
   dmg: 1
 --- !u!65 &7799671767568648528
 BoxCollider:

@@ -38,5 +38,11 @@ namespace Suez {
             bullet.transform.position = pos;
             bullet.GetComponent<BulletEnemy>().SetData(spd, dir, dmg);
         }
+
+        public void ShotLaserEnemy(Transform from)
+        {
+            var laser = Instantiate(GetPref(Pref.LaserEnemy));
+            laser.GetComponent<LaserEnemy>().SetData(from);
+        }
     }
 }

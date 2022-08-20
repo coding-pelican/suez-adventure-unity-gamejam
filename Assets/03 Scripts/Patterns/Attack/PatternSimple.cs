@@ -8,22 +8,22 @@ namespace Suez
     {
         GameManager gm;
 
-        GameObject pref_bullet;
+        Transform player_ts;
 
-        public void Init(Vector3 origin)
+        public void Init(Transform transform)
         {
             gm = GameManager.Instance;
 
-            pref_bullet = gm.GetPref(Pref.BulletEnemy);
+            player_ts = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        public void Step(int frame, Vector3 origin)
+        public void Step(int frame, Transform transform)
         {
             for(var i = 0; i < 3; i++)
             {
                 if(frame % (50*6) == i*40)
                 {
-                    gm.ShotBulletEnemy(origin, 5f, -Mathf.PI*0.5f, 1f);
+                    gm.ShotBulletEnemy(transform.position, 5f, Vector3.Angle(Vector3.right, player_ts.position - transform.position) *-Mathf.Deg2Rad, 1f);
                 }
             }
         }

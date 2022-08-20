@@ -114,4 +114,6 @@ MonoBehaviour:
   dir: 0
   dmg: 0
   zmin: -10
-  zmax: 250
+  zmax: 100
+  xmin: -5
+  xmax: 5

@@ -444,6 +444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ee6c1d5fe9ce04e9183f96b20754e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab_bullet_player: {fileID: 7799671767568648529, guid: 139ac3442736e8e43b972822b2d77b5b, type: 3}
+  prefab_bullet_enemy: {fileID: 7964135471868847407, guid: cd16c902493d9684eba7d7bd948bb931, type: 3}
+  prefab_laser_enemy: {fileID: 1041113520886560637, guid: 467d2d6ee533c30499a3406c2bd12f4c, type: 3}
 --- !u!4 &281706234
 Transform:
   m_ObjectHideFlags: 0
@@ -1715,7 +1718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp_max: 10
   hp: 0
-  invi_time_max: 0
+  invi_time_max: 0.5
 --- !u!114 &1323069432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,7 +1731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f2387490edbb141bcd8fd4b9b6d474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab_bullet: {fileID: 7799671767568648529, guid: 139ac3442736e8e43b972822b2d77b5b, type: 3}
   cooltime_max: 0.25
 --- !u!114 &1323069433
 MonoBehaviour:
@@ -1758,7 +1760,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1967,7 +1969,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

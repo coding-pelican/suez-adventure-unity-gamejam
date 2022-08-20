@@ -9,7 +9,7 @@ namespace Suez
         public float hp_max = 10f;
         public float hp;
 
-        public float invi_time_max;
+        public float invi_time_max = 0.5f;
         float invi_time;
         bool invi;
 
@@ -32,9 +32,11 @@ namespace Suez
                     invi = false;
                 }
             }
+
+            Debug.Log(invi_time.ToString());
         }
 
-        void GetDmg(float amount)
+        public void GetDmg(float amount)
         {
             if (invi == false)
             {
@@ -43,6 +45,8 @@ namespace Suez
 
                 invi = true;
                 invi_time = invi_time_max;
+
+                Debug.Log("Hit! Hp:" + hp.ToString());
             }
         }
 
@@ -54,5 +58,5 @@ namespace Suez
                 Destroy(other.gameObject);
             }
         }
-    } 
+    }
 }

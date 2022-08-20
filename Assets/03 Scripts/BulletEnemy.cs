@@ -14,6 +14,9 @@ namespace Suez
         public float zmin;
         public float zmax;
 
+        public float xmin;
+        public float xmax;
+
         public void SetData(float _spd, float _dir, float _dmg)
         {
             spd = _spd;
@@ -27,11 +30,12 @@ namespace Suez
             transform.position += (Vector3.right * Mathf.Cos(dir) + Vector3.forward * Mathf.Sin(dir)) * spd * Time.deltaTime;
 
             if (transform.position.z < zmin || transform.position.z > zmax) Destroy(gameObject);
+            if (transform.position.x < xmin || transform.position.x > xmax) Destroy(gameObject);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            var tag = collision.gameObject.tag;
+            var tag = other.gameObject.tag;
             if (tag == "Side") Destroy(gameObject);
         }
     } 

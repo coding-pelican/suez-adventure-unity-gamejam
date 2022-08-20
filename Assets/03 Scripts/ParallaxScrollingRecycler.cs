@@ -44,7 +44,7 @@ namespace Suez
         {
             for (int i = 0; i < _parallaxRenderers.Length; i++)
             {
-                _parallaxRenderers[i].transform.Translate(_speed * _gameSpeed * 0.1f * Time.deltaTime * new Vector3(0, 0, -1));
+                _parallaxRenderers[i].transform.Translate(_speed * _gameSpeed * 0.1f * Time.fixedDeltaTime * new Vector3(0, 0, -1));
             }
         }
 

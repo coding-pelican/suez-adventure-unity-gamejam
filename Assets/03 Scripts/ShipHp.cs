@@ -25,7 +25,7 @@ namespace Suez
         {
             if (invi_time > 0)
             {
-                invi_time -= Time.deltaTime;
+                invi_time -= Time.fixedDeltaTime;
                 if (invi_time <= 0)
                 {
                     invi_time = 0f;

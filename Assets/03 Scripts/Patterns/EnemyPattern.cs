@@ -6,8 +6,8 @@ namespace Suez
 {
     public class EnemyPattern : MonoBehaviour
     {
-        IPattern pattern = new PatternBomb();
-        IMove move = new MoveApproach(2f, 0f, new Vector3(0f, 0.5f, 50));
+        IPattern pattern = new PatternCollide();
+        IMove move = new MovePass(10f, 0f, new Vector3(0f, 0.5f, 50));
 
         int frame = 0;
 

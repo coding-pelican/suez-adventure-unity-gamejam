@@ -7,6 +7,7 @@ namespace Suez {
     public class GameManager : Singleton<GameManager> {
 
         PrefabManagerGame prefab_manager;
+        GameObject player;
 
         /*protected override void Awake() {
             base.Awake();
@@ -26,10 +27,15 @@ namespace Suez {
             Debug.Log(mode);
 
             prefab_manager = GameObject.FindGameObjectWithTag("PrefabManager").GetComponent<PrefabManagerGame>();
+            player = GameObject.FindGameObjectWithTag("Player");
         }
 
         public GameObject GetPref(Pref enum_pref) {
             return prefab_manager.GetPref(enum_pref);
+        }
+
+        public GameObject GetPlayer() {
+            return player;
         }
 
         public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg)

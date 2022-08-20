@@ -25,7 +25,7 @@ namespace Suez
         public void Step(int frame, Transform transform, out bool finish)
         {
             if (transform.position.z >= 30f)
-                transform.position += Vector3.back * spd * Time.deltaTime;
+                transform.position += Vector3.back * spd * Time.fixedDeltaTime;
             finish = false;
         }
     }

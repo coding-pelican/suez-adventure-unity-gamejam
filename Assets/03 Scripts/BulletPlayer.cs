@@ -14,7 +14,7 @@ namespace Suez
         // Update is called once per frame
         void FixedUpdate()
         {
-            transform.position += Vector3.forward * spd * Time.deltaTime;
+            transform.position += Vector3.forward * spd * Time.fixedDeltaTime;
             if (transform.position.z >= zmax) Destroy(gameObject);
         }
     } 

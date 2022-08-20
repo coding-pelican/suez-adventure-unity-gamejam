@@ -37,7 +37,7 @@ namespace Suez
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if(from == null)
             {
@@ -45,7 +45,7 @@ namespace Suez
                 return;
             }
 
-            time += Time.deltaTime;
+            time += Time.fixedDeltaTime;
 
             if (time < time_follow)
             {

@@ -16,22 +16,26 @@ namespace Suez
         KeyCode key_right = KeyCode.RightArrow;
         float xspd;
 
+        float xx;
+
         // Start is called before the first frame update
         void Start()
         {
             xspd = 0;
+            xx = 0;
         }
 
         // Update is called once per frame
+        void Update()
+        {
+            xx = (Input.GetKey(key_left) ? -1 : 0) + (Input.GetKey(key_right) ? 1 : 0);
+        }
+
         void FixedUpdate()
         {
-            var xx = (Input.GetKey(key_left) ? -1 : 0) + (Input.GetKey(key_right) ? 1 : 0);
-
-            //if (detect_side) return;
-
             xspd = Mathf.Lerp(xspd, xx * mspd, rate);
 
-            var xnew = Mathf.Clamp(transform.position.x + xspd * Time.deltaTime, xmin, xmax);
+            var xnew = Mathf.Clamp(transform.position.x + xspd * Time.fixedDeltaTime, xmin, xmax);
 
             transform.position = new Vector3(xnew, transform.position.y, transform.position.z);
         }

@@ -25,9 +25,9 @@ namespace Suez
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            transform.position += (Vector3.right * Mathf.Cos(dir) + Vector3.forward * Mathf.Sin(dir)) * spd * Time.deltaTime;
+            transform.position += (Vector3.right * Mathf.Cos(dir) + Vector3.forward * Mathf.Sin(dir)) * spd * Time.fixedDeltaTime;
 
             if (transform.position.z < zmin || transform.position.z > zmax) Destroy(gameObject);
             if (transform.position.x < xmin || transform.position.x > xmax) Destroy(gameObject);

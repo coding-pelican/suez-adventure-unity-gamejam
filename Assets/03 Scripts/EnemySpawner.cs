@@ -40,7 +40,7 @@ namespace Suez {
             yield return new WaitForSeconds(0.5f);
 
             while (true) { // TOTO : _gm에서 "게임 진행 중" 확인 필요
-                int random = Random.Range(0, _enemyPool.Count - 1);
+                int random = Random.Range(0, _enemyPool.Count); //사실 -1 하면 안됨
                 _enemyPool[random].enemy[GetSpawnableMob(_enemyPool[random].enemy)].SetActive(true);
 
                 yield return new WaitForSeconds(isSpawningTimeRandom ? Random.Range(minSpawningTime, maxSpawningTime) : spawningTimeRate);

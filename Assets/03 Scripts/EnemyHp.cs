@@ -9,8 +9,7 @@ namespace Suez
         public float hp_max = 100f;
         public float hp;
 
-        // Start is called before the first frame update
-        void Start()
+        private void OnEnable()
         {
             hp = hp_max;
         }
@@ -18,7 +17,7 @@ namespace Suez
         public void GetDmg(float _amount)
         {
             hp -= _amount;
-            if (hp <= 0) Destroy(gameObject);
+            if (hp <= 0) gameObject.SetActive(false); ;
         }
 
         public void OnTriggerEnter(Collider other)
@@ -26,7 +25,7 @@ namespace Suez
             if (other.gameObject.CompareTag("BulletPlayer"))
             {
                 GetDmg(other.gameObject.GetComponent<BulletPlayer>().dmg);
-                gameObject.SetActive(false);
+                other.gameObject.SetActive(false);
             }
         }
     } 

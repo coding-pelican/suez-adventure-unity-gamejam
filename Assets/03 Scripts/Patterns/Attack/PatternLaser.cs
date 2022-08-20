@@ -17,7 +17,7 @@ namespace Suez
         {
             for(var i = 0; i < 3; i++)
             {
-                if(frame % (50*6) == i*40)
+                if(frame % (50*6) == 150)
                 {
                     gm.ShotLaserEnemy(transform);
                 }

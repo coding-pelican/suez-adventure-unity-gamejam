@@ -23,7 +23,7 @@ namespace Suez
             {
                 if(frame % (50*6) == i*40)
                 {
-                    gm.ShotBulletEnemy(transform.position, 5f, Vector3.Angle(Vector3.right, player_ts.position - transform.position) *-Mathf.Deg2Rad, 1f);
+                    gm.ShotBulletEnemy(transform.position, 10f, Vector3.Angle(Vector3.right, player_ts.position - transform.position) *-Mathf.Deg2Rad, 1f);
                 }
             }
         }

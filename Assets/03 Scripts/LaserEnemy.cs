@@ -21,7 +21,10 @@ namespace Suez {
         LineRenderer lr;
         private GameManager _gm;
 
-        public void SetData(Transform _from) {
+        bool sound = false;
+
+        public void SetData(Transform _from)
+        {
             from = _from;
         }
 
@@ -37,7 +40,7 @@ namespace Suez {
             lockon = target.position;
 
             lr.SetPosition(0, from.position);
-            lr.SetPosition(1, lockon + Vector3.back * 2f + Vector3.down * 0.5f);
+            lr.SetPosition(1, lockon + Vector3.back * 3f + Vector3.down * 0.5f);
         }
 
         void FixedUpdate() {
@@ -53,14 +56,22 @@ namespace Suez {
                 lockon = target.position;
             } else if (time < time_follow + time_stop) {
                 //pass
-            } else if (time < time_follow + time_stop + time_shot) {
+            }
+            else if (time < time_follow + time_stop + time_shot)
+            {
+                if(!sound)
+                {
+                    GameManager.Instance.PlaySfx(2);
+                    sound = true;
+                }
+
                 //lr.widthCurve.keys[0].value = Random.Range(0.1f, 1f);
                 lr.startWidth = lr.endWidth = Random.Range(0.1f, 1f);
                 if ((target.position - lockon).magnitude <= range) player_hp.GetDmg(dmg);
             } else Destroy(gameObject);
 
             lr.SetPosition(0, from.position);
-            lr.SetPosition(1, lockon + Vector3.back * 2f + Vector3.down * 0.5f);
+            lr.SetPosition(1, lockon + Vector3.back * 3f + Vector3.down * 0.5f);
         }
     }
 }

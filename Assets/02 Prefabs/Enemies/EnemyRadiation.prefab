@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4145217545264742539}
   - component: {fileID: 4145217545264742536}
   - component: {fileID: 4145217545264742537}
-  - component: {fileID: 6631731800388676279}
+  - component: {fileID: -1478855522717542515}
   - component: {fileID: 4145217545264742540}
   m_Layer: 0
-  m_Name: EnemySimple
+  m_Name: EnemyRadiation
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   hp: 0
   gold_min: 3
   gold_max: 5
---- !u!114 &6631731800388676279
+--- !u!114 &-1478855522717542515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4145217545264742583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc727aeb98ec38047877479bd82dc135, type: 3}
+  m_Script: {fileID: 11500000, guid: b506b30318f7d004282ecea2cb5b813a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!54 &4145217545264742540

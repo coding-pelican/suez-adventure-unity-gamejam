@@ -26,6 +26,9 @@ namespace Suez {
         private SpriteManager sprite_manager;
         private ItemManager item_manager;
         private EnemySpawner _enemySpawner;
+        private AudioManager audio_manager;
+        private AudioSource ch_sfx;
+        private AudioSource ch_bgm;
         private float playerXInput;
         private EGameFlow _curGameFlow;
         private List<EStageFlow> _stages = new();
@@ -60,11 +63,11 @@ namespace Suez {
         }
 
         private void OnEnable() {
-            // ¾À ¸Å´ÏÀúÀÇ sceneLoaded¿¡ Ã¼ÀÎÀ» °Ç´Ù.
+            // ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ sceneLoadedï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½.
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        // Ã¼ÀÎÀ» °É¾î¼­ ÀÌ ÇÔ¼ö´Â ¸Å ¾À¸¶´Ù È£ÃâµÈ´Ù.
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½É¾î¼­ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             Debug.Log("OnSceneLoaded: " + scene.name);
             Debug.Log(mode);
@@ -74,6 +77,11 @@ namespace Suez {
             prefab_manager = GameObject.FindGameObjectWithTag("PrefabManager").GetComponent<PrefabManagerGame>();
             sprite_manager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<SpriteManager>();
             item_manager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
+            audio_manager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+            AudioSource[] temp = audio_manager.GetComponents<AudioSource>();
+            ch_sfx = temp[0];
+            ch_bgm = temp[1];
+
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerXInput = player.GetComponent<ShipMove>().XInput;
             InitStage();
@@ -144,11 +152,30 @@ namespace Suez {
             var bullet = Instantiate(GetPref(Pref.BulletEnemy));
             bullet.transform.position = pos;
             bullet.GetComponent<BulletEnemy>().SetData(spd, dir, dmg);
+
+            PlaySfx(1);
         }
 
-        public void ShotLaserEnemy(Transform from) {
+        public void ShotLaserEnemy(Transform from)
+        {
             var laser = Instantiate(GetPref(Pref.LaserEnemy));
             laser.GetComponent<LaserEnemy>().SetData(from);
+        }
+
+        public void ShotLaserBoss(Vector3 from, Vector3 to)
+        {
+            var laser = Instantiate(GetPref(Pref.LaserBoss));
+            laser.GetComponent<LaserBoss>().SetData(from, to);
+        }
+
+        public void PlaySfx(int index)
+        {
+            ch_sfx.PlayOneShot( audio_manager.GetSfx(index) );
+        }
+        public void PlayBgm(int index)
+        {
+            ch_bgm.clip = audio_manager.GetBgm(index);
+            ch_bgm.Play();
         }
     }
 }

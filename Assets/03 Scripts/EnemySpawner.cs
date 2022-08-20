@@ -20,8 +20,12 @@ namespace Suez {
         public float minSpawningTime = 2.6f;
         public float maxSpawningTime = 6.6f;
 
-        private void Start() {
+        private void Awake() {
             _gm = GameManager.Instance;
+            _gm.EnemySpawner = this;
+        }
+
+        private void Start() {
             _enemyTypeCnt = enemyType.Length;
             if (_enemyPool.Count > 0) {
                 _enemyPool.Clear();
@@ -33,13 +37,12 @@ namespace Suez {
                 }
                 _enemyPool.Add(enemies);
             }
-            PlayGame();
         }
 
         private IEnumerator ActivateMob() {
             yield return new WaitForSeconds(0.5f);
 
-            while (true) { // TOTO : _gm에서 "게임 진행 중" 확인 필요
+            while (_gm.IsCurGameFlowField()) {
                 int random = Random.Range(0, _enemyPool.Count); //사실 -1 하면 안됨
                 _enemyPool[random].enemy[GetSpawnableMob(_enemyPool[random].enemy)].SetActive(true);
 
@@ -65,7 +68,7 @@ namespace Suez {
         }
 
         public void PlayGame() {
-            if (true) { // TOTO : _gm에서 "게임 진행 중" 확인 필요
+            if (_gm.IsCurGameFlowField()) {
                 for (int type = 0; type < _enemyPool.Count; type++) {
                     for (int idx = 0; idx < _enemyPool[type].enemy.Count; idx++) {
                         if (_enemyPool[type].enemy[idx].activeSelf) {

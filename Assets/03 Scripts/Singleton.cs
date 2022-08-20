@@ -22,6 +22,7 @@ namespace Suez {
         }
 
         protected virtual void Awake() {
+
             if (instance == null) {
                 instance = this as T;
                 if (transform.parent != null && transform.root != null) {

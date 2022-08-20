@@ -26,7 +26,7 @@ namespace Suez
             PlayerPrefs.SetFloat("Hp", 80f);
             PlayerPrefs.SetFloat("HpMax", 80f);
             PlayerPrefs.SetInt("Gold", 0);
-            PlayerPrefs.SetInt("Slot0", -1);
+            PlayerPrefs.SetInt("Slot0", 0);
             PlayerPrefs.SetInt("Slot1", -1);
             PlayerPrefs.SetInt("Slot2", -1);
             PlayerPrefs.SetInt("Slot3", -1);
@@ -89,6 +89,19 @@ namespace Suez
             var hp_max = PlayerPrefs.GetFloat("HpMax");
             var hp_new = PlayerPrefs.GetFloat("Hp") + amount;
             PlayerPrefs.SetFloat("Hp", Mathf.Min(hp_new, hp_max));
+        }
+
+        public void GetGold(int amount)
+        {
+            PlayerPrefs.SetInt("Gold", PlayerPrefs.GetInt("Gold") + amount);
+        }
+
+        public bool UseGold(int amount)
+        {
+            var gold_new = PlayerPrefs.GetInt("Gold") - amount;
+            if (gold_new < 0) return false;
+            PlayerPrefs.SetInt("Gold", gold_new);
+            return true;
         }
 
         public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg)

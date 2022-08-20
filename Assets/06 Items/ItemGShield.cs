@@ -21,5 +21,15 @@ namespace Suez
         {
             return 30f;
         }
+
+        public override float GetDmgBonus()
+        {
+            return 1f;
+        }
+
+        public override int GetHomingNum()
+        {
+            return 1;
+        }
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906770762174972632}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 69676ea1f48fe814890bc197b6cb9b0a, type: 2}
+  - {fileID: 2100000, guid: c547d9d8d13bc2c4c92e3e5aa3fd289a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,10 +94,10 @@ GameObject:
   - component: {fileID: 7799671767568648533}
   - component: {fileID: 7799671767568648534}
   - component: {fileID: 7799671767568648535}
-  - component: {fileID: 7799671767568648532}
+  - component: {fileID: -4130765377342958804}
   - component: {fileID: 7799671767568648528}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletPlayerHoming
   m_TagString: BulletPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7799671767568648532
+--- !u!114 &-4130765377342958804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,12 +178,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7799671767568648529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f3783858a407045bbffdbad27ac79a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3484cda4cf993554d91f24b2f17bc218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spd: 20
-  zmax: 100
-  dmg: 1
+  spd: 30
+  zmax: 250
+  dmg: 3
 --- !u!65 &7799671767568648528
 BoxCollider:
   m_ObjectHideFlags: 0

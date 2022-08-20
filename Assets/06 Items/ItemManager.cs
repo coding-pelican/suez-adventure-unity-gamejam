@@ -6,7 +6,7 @@ namespace Suez
 {
     public class ItemManager : MonoBehaviour
     {
-        List<ItemBase> item_list;
+        List<ItemBase> item_list = new();
 
         private void Awake()
         {

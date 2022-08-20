@@ -43,7 +43,7 @@ namespace Suez {
             bonus_cooltime -= Time.fixedDeltaTime;
             if (bonus_cooltime <= 0f)
             {
-                var bullet = Instantiate(gm.GetPref(Pref.BulletPlayerHoming));
+                var bullet = Instantiate(_gm.GetPref(Pref.BulletPlayerHoming));
                 bullet.transform.position = transform.position;
 
                 bonus_cooltime += bonus_cooltime_max/num;

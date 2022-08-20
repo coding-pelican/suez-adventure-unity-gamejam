@@ -4,29 +4,27 @@ using UnityEngine;
 
 namespace Suez
 {
-    public class LaserEnemy : MonoBehaviour
+    public class LaserBoss : MonoBehaviour
     {
-        public float time_follow = 2.5f;
-        public float time_stop = 1f;
+        public float time_stop = 1.5f;
         public float time_shot = 1.5f;
 
-        public float dmg = 10f;
+        public float dmg = 30f;
         public float range = 0.3f;
 
         float time = 0f;
 
-        Transform from;
+        Vector3 from;
         Transform target;
         Vector3 lockon;
         ShipHp player_hp;
 
         LineRenderer lr;
 
-        bool sound = false;
-
-        public void SetData(Transform _from)
+        public void SetData(Vector3 _from, Vector3 _to)
         {
             from = _from;
+            lockon = _to;
         }
 
         // Start is called before the first frame update
@@ -36,46 +34,29 @@ namespace Suez
             var player = GameObject.FindGameObjectWithTag("Player");
             player_hp = player.GetComponent<ShipHp>();
             target = player.transform;
-            lockon = target.position;
 
-            lr.SetPosition(0, from.position);
+            lr.SetPosition(0, from);
             lr.SetPosition(1, lockon + Vector3.back * 3f + Vector3.down * 0.5f);
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (!from.gameObject.activeSelf)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             time += Time.fixedDeltaTime;
 
-            if (time < time_follow)
-            {
-                lockon = target.position;
-            }
-            else if (time < time_follow + time_stop)
+            if (time < time_stop)
             {
                 //pass
             }
-            else if (time < time_follow + time_stop + time_shot)
+            else if (time < time_stop + time_shot)
             {
-                if(!sound)
-                {
-                    GameManager.Instance.PlaySfx(2);
-                    sound = true;
-                }
-
                 //lr.widthCurve.keys[0].value = Random.Range(0.1f, 1f);
-                lr.startWidth = lr.endWidth = Random.Range(0.1f, 1f);
+                lr.startWidth = lr.endWidth = Random.Range(0.1f, 2f);
                 if ((target.position - lockon).magnitude <= range) player_hp.GetDmg(dmg);
             }
             else Destroy(gameObject);
 
-            lr.SetPosition(0, from.position);
+            lr.SetPosition(0, from);
             lr.SetPosition(1, lockon + Vector3.back * 3f + Vector3.down * 0.5f);
         }
     }

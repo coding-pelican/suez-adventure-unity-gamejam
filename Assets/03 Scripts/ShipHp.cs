@@ -59,6 +59,8 @@ namespace Suez
                 invi_time = invi_time_max;
 
                 //Debug.Log("Hit! Hp:" + hp.ToString());
+
+                gm.PlaySfx(0);
             }
         }
 

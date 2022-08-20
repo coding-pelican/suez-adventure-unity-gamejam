@@ -9,7 +9,7 @@ namespace Suez
     {
         public override int Id => 0;
         public override string name => "대방패";
-        public override string desc => "방어력+30";
+        public override string desc => "방어력 +30%";
         public override int price => 100;
 
         public override Sprite GetSpr()
@@ -24,12 +24,12 @@ namespace Suez
 
         public override float GetDmgBonus()
         {
-            return 1f;
+            return 0f;// 1f;
         }
 
         public override int GetHomingNum()
         {
-            return 1;
+            return 0;//1;
         }
     }
 }

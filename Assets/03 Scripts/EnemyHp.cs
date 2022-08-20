@@ -20,10 +20,12 @@ namespace Suez
         public void GetDmg(float _amount)
         {
             hp -= _amount;
+            GameManager.Instance.PlaySfx(3);
             if (hp <= 0)
             {
                 gameObject.SetActive(false);
                 GameManager.Instance.GetGold(Random.Range(gold_min, gold_max + 1));
+                GameManager.Instance.PlaySfx(4);
             }
         }
 

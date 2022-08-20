@@ -23,6 +23,9 @@ namespace Suez {
         private GameObject player;
         private SpriteManager sprite_manager;
         private ItemManager item_manager;
+        private AudioManager audio_manager;
+        private AudioSource ch_sfx;
+        private AudioSource ch_bgm;
         private float playerXInput;
 
         public float PlayerXInput { get => playerXInput; set => playerXInput = value; }
@@ -62,6 +65,11 @@ namespace Suez {
             prefab_manager = GameObject.FindGameObjectWithTag("PrefabManager").GetComponent<PrefabManagerGame>();
             sprite_manager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<SpriteManager>();
             item_manager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
+            audio_manager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+            AudioSource[] temp = audio_manager.GetComponents<AudioSource>();
+            ch_sfx = temp[0];
+            ch_bgm = temp[1];
+
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerXInput = player.GetComponent<ShipMove>().XInput;
         }
@@ -114,11 +122,30 @@ namespace Suez {
             var bullet = Instantiate(GetPref(Pref.BulletEnemy));
             bullet.transform.position = pos;
             bullet.GetComponent<BulletEnemy>().SetData(spd, dir, dmg);
+
+            PlaySfx(1);
         }
 
-        public void ShotLaserEnemy(Transform from) {
+        public void ShotLaserEnemy(Transform from)
+        {
             var laser = Instantiate(GetPref(Pref.LaserEnemy));
             laser.GetComponent<LaserEnemy>().SetData(from);
+        }
+
+        public void ShotLaserBoss(Vector3 from, Vector3 to)
+        {
+            var laser = Instantiate(GetPref(Pref.LaserBoss));
+            laser.GetComponent<LaserBoss>().SetData(from, to);
+        }
+
+        public void PlaySfx(int index)
+        {
+            ch_sfx.PlayOneShot( audio_manager.GetSfx(index) );
+        }
+        public void PlayBgm(int index)
+        {
+            ch_bgm.clip = audio_manager.GetBgm(index);
+            ch_bgm.Play();
         }
     }
 }

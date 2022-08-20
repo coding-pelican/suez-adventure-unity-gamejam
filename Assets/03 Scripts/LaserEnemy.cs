@@ -37,7 +37,7 @@ namespace Suez
             lockon = target.position;
 
             lr.SetPosition(0, from.position);
-            lr.SetPosition(1, lockon + Vector3.back * 1f + Vector3.down * 0.5f);
+            lr.SetPosition(1, lockon + Vector3.back * 2f + Vector3.down * 0.5f);
         }
 
         // Update is called once per frame
@@ -68,7 +68,7 @@ namespace Suez
             else Destroy(gameObject);
 
             lr.SetPosition(0, from.position);
-            lr.SetPosition(1, lockon + Vector3.back * 1f + Vector3.down * 0.5f);
+            lr.SetPosition(1, lockon + Vector3.back * 2f + Vector3.down * 0.5f);
         }
     }
 }

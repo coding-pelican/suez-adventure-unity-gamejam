@@ -17,5 +17,5 @@ namespace Suez
             transform.position += Vector3.forward * spd * Time.fixedDeltaTime;
             if (transform.position.z >= zmax) Destroy(gameObject);
         }
-    } 
+    }
 }

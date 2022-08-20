@@ -25,7 +25,7 @@ namespace Suez {
             PlayerPrefs.SetFloat("Hp", 80f);
             PlayerPrefs.SetFloat("HpMax", 80f);
             PlayerPrefs.SetInt("Gold", 0);
-            PlayerPrefs.SetInt("Slot0", -1);
+            PlayerPrefs.SetInt("Slot0", 0);
             PlayerPrefs.SetInt("Slot1", -1);
             PlayerPrefs.SetInt("Slot2", -1);
             PlayerPrefs.SetInt("Slot3", -1);
@@ -36,11 +36,11 @@ namespace Suez {
         }
 
         void OnEnable() {
-            // ¾À ¸Å´ÏÀúÀÇ sceneLoaded¿¡ Ã¼ÀÎÀ» °Ç´Ù.
+            // ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ sceneLoadedï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½.
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        // Ã¼ÀÎÀ» °É¾î¼­ ÀÌ ÇÔ¼ö´Â ¸Å ¾À¸¶´Ù È£ÃâµÈ´Ù.
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½É¾î¼­ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
         void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             Debug.Log("OnSceneLoaded: " + scene.name);
             Debug.Log(mode);
@@ -82,7 +82,21 @@ namespace Suez {
             PlayerPrefs.SetFloat("Hp", Mathf.Min(hp_new, hp_max));
         }
 
-        public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg) {
+        public void GetGold(int amount)
+        {
+            PlayerPrefs.SetInt("Gold", PlayerPrefs.GetInt("Gold") + amount);
+        }
+
+        public bool UseGold(int amount)
+        {
+            var gold_new = PlayerPrefs.GetInt("Gold") - amount;
+            if (gold_new < 0) return false;
+            PlayerPrefs.SetInt("Gold", gold_new);
+            return true;
+        }
+
+        public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg)
+        {
             var bullet = Instantiate(GetPref(Pref.BulletEnemy));
             bullet.transform.position = pos;
             bullet.GetComponent<BulletEnemy>().SetData(spd, dir, dmg);

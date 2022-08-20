@@ -7,6 +7,7 @@ namespace Suez
     public enum Pref
     {
         BulletPlayer,
+        BulletPlayerHoming,
         BulletEnemy,
         LaserEnemy,
     }
@@ -14,6 +15,7 @@ namespace Suez
     public class PrefabManagerGame : MonoBehaviour
     {
         public GameObject prefab_bullet_player;
+        public GameObject prefab_bullet_player_homing;
         public GameObject prefab_bullet_enemy;
         public GameObject prefab_laser_enemy;
 
@@ -22,6 +24,7 @@ namespace Suez
         private void Awake()
         {
             dict.Add(Pref.BulletPlayer, prefab_bullet_player);
+            dict.Add(Pref.BulletPlayerHoming, prefab_bullet_player_homing);
             dict.Add(Pref.BulletEnemy, prefab_bullet_enemy);
             dict.Add(Pref.LaserEnemy, prefab_laser_enemy);
         }

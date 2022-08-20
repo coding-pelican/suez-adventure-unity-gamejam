@@ -23,7 +23,7 @@ namespace Suez
             if (hp <= 0)
             {
                 gameObject.SetActive(false);
-                PlayerPrefs.SetInt("Gold", PlayerPrefs.GetInt("Gold") + Random.Range(gold_min, gold_max + 1));
+                GameManager.Instance.GetGold(Random.Range(gold_min, gold_max + 1));
             }
         }
 
@@ -31,7 +31,22 @@ namespace Suez
         {
             if (other.gameObject.CompareTag("BulletPlayer"))
             {
-                GetDmg(other.gameObject.GetComponent<BulletPlayer>().dmg);
+                var dmg = other.gameObject.GetComponent<BulletPlayer>().dmg;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    var item = GameManager.Instance.GetItemBySlot(i);
+                    if (item == null) continue;
+                    dmg += item.GetDmgBonus();
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    var item = GameManager.Instance.GetItemBySlot(i);
+                    if (item == null) continue;
+                    dmg *= item.GetDmgMultiply();
+                }
+
+                GetDmg(dmg);
                 other.gameObject.SetActive(false);
             }
         }

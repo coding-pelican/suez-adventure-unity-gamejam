@@ -37,6 +37,11 @@ namespace Suez
             return 0f;
         }
 
+        public virtual int GetHomingNum()
+        {
+            return 0;
+        }
+
         public virtual void OnGetDmg()
         {
             return;

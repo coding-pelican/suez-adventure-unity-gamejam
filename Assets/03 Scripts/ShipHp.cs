@@ -6,13 +6,11 @@ namespace Suez
 {
     public class ShipHp : MonoBehaviour
     {
-        GameManager gm;
+        GameManager gm = null;
 
         public float invi_time_max = 0.5f;
         float invi_time;
         bool invi;
-
-        public float def = 0f;
 
         float GetDef()
         {

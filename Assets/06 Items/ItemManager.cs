@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Suez {
-    public class ItemManager : MonoBehaviour {
+namespace Suez
+{
+    public class ItemManager : MonoBehaviour
+    {
         List<ItemBase> item_list = new();
 
         private void Awake() {

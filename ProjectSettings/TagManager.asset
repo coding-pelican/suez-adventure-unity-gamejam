@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - BulletEnemy
   - PrefabManager
+  - SpriteManager
   layers:
   - Default
   - TransparentFX

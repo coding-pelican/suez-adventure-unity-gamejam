@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Suez
-{
-    public class QuittingGame : MonoBehaviour
-    {
+namespace Suez {
+    public class QuittingGame : MonoBehaviour {
         private int _clickCount = 0;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
                 _clickCount++;
                 if (!IsInvoking("DoubleClick"))
                     Invoke(nameof(DoubleClick), 1.0f);
 
-            }
-            else if (_clickCount == 2)
-            {
+            } else if (_clickCount == 2) {
                 CancelInvoke(nameof(DoubleClick));
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
@@ -29,9 +23,8 @@ namespace Suez
             }
         }
 
-        private void DoubleClick()
-        {
+        private void DoubleClick() {
             _clickCount = 0;
         }
-    } 
+    }
 }

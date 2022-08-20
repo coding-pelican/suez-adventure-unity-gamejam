@@ -21,7 +21,7 @@ namespace Suez {
             }
         }
 
-        protected virtual void Start() {
+        protected virtual void Awake() {
             if (instance == null) {
                 instance = this as T;
                 if (transform.parent != null && transform.root != null) {
@@ -33,5 +33,5 @@ namespace Suez {
                 Destroy(gameObject);
             }
         }
-    } 
+    }
 }

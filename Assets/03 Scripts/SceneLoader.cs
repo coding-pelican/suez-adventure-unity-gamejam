@@ -7,10 +7,10 @@ namespace Suez {
         public GameManager gameManager;
 
         void Awake() {
-            //if (GameManager.Instance == null) {
-            //    Instantiate(gameManager);
-            //}
+            if (GameManager.Instance == null) {
+                Instantiate(gameManager);
+            }
             Application.targetFrameRate = 30;
         }
-    } 
+    }
 }

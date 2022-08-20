@@ -12,8 +12,6 @@ namespace Suez
         float invi_time;
         bool invi;
 
-        public float def = 0f;
-
         float GetDef()
         {
             float s = 0f;
@@ -30,7 +28,7 @@ namespace Suez
         // Start is called before the first frame update
         void Start()
         {
-            GameManager gm; = GameManager.Instance;
+            GameManager gm = GameManager.Instance;
 
             invi = false;
             invi_time = 0;

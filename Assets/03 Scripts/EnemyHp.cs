@@ -26,7 +26,7 @@ namespace Suez
             if (other.gameObject.CompareTag("BulletPlayer"))
             {
                 GetDmg(other.gameObject.GetComponent<BulletPlayer>().dmg);
-                Destroy(other.gameObject);
+                gameObject.SetActive(false);
             }
         }
     } 

@@ -33,6 +33,9 @@ namespace Suez {
         private EGameFlow _curGameFlow;
         private List<EStageFlow> _stages = new();
 
+        private GameObject boss;
+        public GameObject Boss { get => boss; set => boss = value; }
+
         public float PlayerXInput { get => playerXInput; set => playerXInput = value; }
         public EGameFlow CurGameFlow { get => _curGameFlow; set => _curGameFlow = value; }
         public List<EStageFlow> Stages { get => _stages; set => _stages = value; }
@@ -58,6 +61,8 @@ namespace Suez {
             PlayerPrefs.SetInt("Slot5", -1);
             PlayerPrefs.SetInt("Slot6", -1);
             PlayerPrefs.SetInt("Slot7", -1);
+
+            PlayerPrefs.SetFloat("Progress", 0f);
 
             InitAwake();
         }
@@ -126,6 +131,10 @@ namespace Suez {
         public void ReduceHp(float amount) {
             var hp_new = PlayerPrefs.GetFloat("Hp") - amount;
             PlayerPrefs.SetFloat("Hp", Mathf.Max(0f, hp_new));
+            if(hp_new <= 0)
+            {
+                Debug.Log("게임오버!");
+            }
         }
 
         public void IncreaseHp(float amount) {
@@ -176,6 +185,43 @@ namespace Suez {
         {
             ch_bgm.clip = audio_manager.GetBgm(index);
             ch_bgm.Play();
+        }
+
+
+        public void ResetProgress()
+        {
+            PlayerPrefs.SetFloat("Progress", 0f);
+        }
+
+        public void AddProgress(float amount)
+        {
+            PlayerPrefs.SetFloat("Progress", PlayerPrefs.GetFloat("Progress") + amount);
+
+            if (PlayerPrefs.GetFloat("Progress") >= 60f)
+            {
+                Stages[0] += 1;
+                if(Stages[0] == EStageFlow.L3)
+                {
+                    Debug.Log("Boss Appeared!");
+                    _enemySpawner.gameObject.SetActive(false);
+                    Boss.SetActive(true);
+                }
+                else if (Stages[0] == EStageFlow.Clear)
+                {
+                    //클리어 화면 표시
+                    Debug.Log("클리어!");
+                }
+                else
+                {
+                    Debug.Log("스테이지 클리어!");
+                    if(!_enemySpawner.gameObject.activeSelf) _enemySpawner.gameObject.SetActive(true);
+                    _enemySpawner.minSpawningTime -= 1;
+                    _enemySpawner.maxSpawningTime -= 1;
+                    if(Boss.activeSelf) Boss.SetActive(false);
+                    _enemySpawner.SStart();
+                }
+                ResetProgress();
+            }
         }
     }
 }

@@ -41,6 +41,9 @@ namespace Suez {
                 }
             }
 
+            if(_gm.Stages[0] != EStageFlow.L3)
+                _gm.AddProgress(Time.fixedDeltaTime);
+
             //Debug.Log(invi_time.ToString());
         }
 

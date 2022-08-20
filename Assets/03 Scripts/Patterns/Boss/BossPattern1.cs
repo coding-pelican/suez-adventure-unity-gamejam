@@ -6,6 +6,8 @@ namespace Suez
 {
     public class BossPattern1 : MonoBehaviour
     {
+        GameManager gm = null;
+
         IPatternBoss pattern = null;
         IMove move = null;
 
@@ -18,6 +20,12 @@ namespace Suez
 
         int ani_state;
 
+        private void Awake()
+        {
+            gm = GameManager.Instance;
+            gm.Boss = this.gameObject;
+            gameObject.SetActive(false);
+        }
 
         // Start is called before the first frame update
         private void OnEnable()
@@ -36,6 +44,8 @@ namespace Suez
         // Update is called once per frame
         void FixedUpdate()
         {
+            if (!gm.IsCurGameFlowField()) return;
+
             pattern.Step(frame, transform, out bool finish_pattern);
 
             move.Step(frame, transform, out bool finish_move);

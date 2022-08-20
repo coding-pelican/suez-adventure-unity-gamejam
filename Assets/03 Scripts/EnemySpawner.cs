@@ -17,8 +17,8 @@ namespace Suez {
         public int objCnt;
         public float spawningTimeRate = 4.6f;
         public bool isSpawningTimeRandom = false;
-        public float minSpawningTime = 2.6f;
-        public float maxSpawningTime = 6.6f;
+        public float minSpawningTime = 3.6f;
+        public float maxSpawningTime = 5.6f;
 
         private void Awake() {
             _gm = GameManager.Instance;
@@ -37,6 +37,11 @@ namespace Suez {
                 }
                 _enemyPool.Add(enemies);
             }
+        }
+
+        public void SStart()
+        {
+            Start();
         }
 
         private IEnumerator ActivateMob() {

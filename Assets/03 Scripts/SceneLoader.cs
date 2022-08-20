@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Suez {
     public class SceneLoader : MonoBehaviour {
-        public GameManager gameManager;
+        public GameObject gameManager;
 
         void Awake() {
             if (GameManager.Instance == null) {
                 Instantiate(gameManager);
             }
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = 60;
         }
     }
 }

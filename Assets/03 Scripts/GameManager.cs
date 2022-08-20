@@ -15,13 +15,13 @@ namespace Suez {
         Dictionary<Pref, GameObject> dict = new();
 
         protected override void Awake() {
+            base.Awake();
             dict.Add(Pref.BulletPlayer, prefab_bullet_player);
             dict.Add(Pref.BulletEnemy, prefab_bullet_enemy);
         }
 
         public GameObject GetPref(Pref enum_pref) {
-            GameObject pref;
-            if (dict.TryGetValue(enum_pref, out pref)) return pref;
+            if (dict.TryGetValue(enum_pref, out GameObject pref)) return pref;
             return null;
         }
     }

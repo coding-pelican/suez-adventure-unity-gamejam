@@ -21,9 +21,9 @@ namespace Suez
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            cooltime -= Time.deltaTime;
+            cooltime -= Time.fixedDeltaTime;
             if (cooltime <= 0f)
             {
                 var bullet = Instantiate(gm.GetPref(Pref.BulletPlayer));

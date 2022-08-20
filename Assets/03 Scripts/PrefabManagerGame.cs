@@ -8,12 +8,14 @@ namespace Suez
     {
         BulletPlayer,
         BulletEnemy,
+        LaserEnemy,
     }
 
     public class PrefabManagerGame : MonoBehaviour
     {
         public GameObject prefab_bullet_player;
         public GameObject prefab_bullet_enemy;
+        public GameObject prefab_laser_enemy;
 
         Dictionary<Pref, GameObject> dict = new();
 
@@ -21,6 +23,7 @@ namespace Suez
         {
             dict.Add(Pref.BulletPlayer, prefab_bullet_player);
             dict.Add(Pref.BulletEnemy, prefab_bullet_enemy);
+            dict.Add(Pref.LaserEnemy, prefab_laser_enemy);
         }
 
         public GameObject GetPref(Pref enum_pref)

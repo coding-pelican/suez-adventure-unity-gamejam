@@ -4,6 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Suez {
+    public enum EGameFlow { 
+        MainMenu,
+        Field,
+        Shop,
+        GameOver,
+        GameEnding
+    }
+
+    public enum EStageFlow { 
+        L1,
+        L2,
+        L3,
+    }
+
     public class GameManager : Singleton<GameManager> {
         private PrefabManagerGame prefab_manager;
         private GameObject player;

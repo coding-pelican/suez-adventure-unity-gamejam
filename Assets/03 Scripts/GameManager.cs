@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Suez
-{
-    public class GameManager : Singleton<GameManager>
-    {
-
-<<<<<<< Updated upstream
-        PrefabManagerGame prefab_manager;
-        SpriteManager sprite_manager;
-        ItemManager item_manager;
-        GameObject player;
-=======
+namespace Suez {
+    public class GameManager : Singleton<GameManager> {
         private PrefabManagerGame prefab_manager;
         private GameObject player;
+        private SpriteManager sprite_manager;
+        private ItemManager item_manager;
         private float playerXInput;
 
         public float PlayerXInput { get => playerXInput; set => playerXInput = value; }
->>>>>>> Stashed changes
 
         /*protected override void Awake() {
             base.Awake();
             dict.Add(Pref.BulletPlayer, prefab_bullet_player);
             dict.Add(Pref.BulletEnemy, prefab_bullet_enemy);
         }*/
-        protected override void Awake()
-        {
+        protected override void Awake() {
             base.Awake();
             PlayerPrefs.DeleteAll();
 
@@ -44,15 +35,13 @@ namespace Suez
             PlayerPrefs.SetInt("Slot7", -1);
         }
 
-        void OnEnable()
-        {
+        void OnEnable() {
             // 씬 매니저의 sceneLoaded에 체인을 건다.
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             Debug.Log("OnSceneLoaded: " + scene.name);
             Debug.Log(mode);
 
@@ -60,55 +49,46 @@ namespace Suez
             sprite_manager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<SpriteManager>();
             item_manager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
             player = GameObject.FindGameObjectWithTag("Player");
-            PlayerXInput = player.gameObject.GetComponent<ShipMove>().XInput;
+            PlayerXInput = player.GetComponent<ShipMove>().XInput;
         }
 
-        public GameObject GetPref(Pref enum_pref)
-        {
+        public GameObject GetPref(Pref enum_pref) {
             return prefab_manager.GetPref(enum_pref);
         }
 
-        public Sprite GetSpr(int index)
-        {
+        public Sprite GetSpr(int index) {
             return sprite_manager.GetSpr(index);
         }
 
-        public ItemBase GetItem(int index)
-        {
+        public ItemBase GetItem(int index) {
             return item_manager.GetItem(index);
         }
-        public ItemBase GetItemBySlot(int slot)
-        {
+        public ItemBase GetItemBySlot(int slot) {
             return item_manager.GetItem(PlayerPrefs.GetInt("Slot" + slot.ToString()));
         }
 
-        public GameObject GetPlayer()
-        {
+        public GameObject GetPlayer() {
             return player;
         }
 
-        public void ReduceHp(float amount)
-        {
+        public void ReduceHp(float amount) {
             var hp_new = PlayerPrefs.GetFloat("Hp") - amount;
             PlayerPrefs.SetFloat("Hp", Mathf.Max(0f, hp_new));
         }
 
-        public void IncreaseHp(float amount)
-        {
+        public void IncreaseHp(float amount) {
             var hp_max = PlayerPrefs.GetFloat("HpMax");
             var hp_new = PlayerPrefs.GetFloat("Hp") + amount;
             PlayerPrefs.SetFloat("Hp", Mathf.Min(hp_new, hp_max));
         }
 
-        public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg)
-        {
+        public void ShotBulletEnemy(Vector3 pos, float spd, float dir, float dmg) {
             var bullet = Instantiate(GetPref(Pref.BulletEnemy));
             bullet.transform.position = pos;
             bullet.GetComponent<BulletEnemy>().SetData(spd, dir, dmg);
         }
 
-        public void ShotLaserEnemy(Transform from)
-        {
+        public void ShotLaserEnemy(Transform from) {
             var laser = Instantiate(GetPref(Pref.LaserEnemy));
             laser.GetComponent<LaserEnemy>().SetData(from);
         }

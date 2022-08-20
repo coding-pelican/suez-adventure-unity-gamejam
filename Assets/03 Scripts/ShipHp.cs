@@ -30,7 +30,7 @@ namespace Suez
         // Start is called before the first frame update
         void Start()
         {
-            GameManager gm; = GameManager.Instance;
+            gm = GameManager.Instance;
 
             invi = false;
             invi_time = 0;

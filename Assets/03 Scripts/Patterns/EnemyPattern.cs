@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Suez
-{
-    public class EnemyPattern : MonoBehaviour
-    {
-        IPattern pattern = null;
-        IMove move = null;
+namespace Suez {
+    public class EnemyPattern : MonoBehaviour {
+        private GameManager _gm;
+        private IPattern pattern = null;
+        private IMove move = null;
 
-        int frame;
+        private int frame;
 
-        // Start is called before the first frame update
-        private void OnEnable()
-        {
+        private void Awake() {
+            _gm = GameManager.Instance;
+        }
+
+        private void OnEnable() {
             pattern = new PatternSimple();
             var _x = Random.Range(-3f, 3f);
             move = new MoveApproach(8f, 0f, new Vector3(_x, 0.5f, 50f));
@@ -24,9 +25,8 @@ namespace Suez
             frame = 0;
         }
 
-        // Update is called once per frame
-        void FixedUpdate()
-        {
+        private void FixedUpdate() {
+            if (!_gm.IsCurGameFlowField()) return;
             pattern.Step(frame, transform);
             move.Step(frame, transform, out bool finish);
             if (finish) gameObject.SetActive(false);

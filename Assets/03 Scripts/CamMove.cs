@@ -19,6 +19,7 @@ namespace Suez {
         }
 
         private void FixedUpdate() {
+            if (!_gm.IsCurGameFlowField()) return;
             var newx = Mathf.Lerp(transform.position.x, shipTs.position.x, rate);
             transform.position = new Vector3(newx, transform.position.y, transform.position.z);
             _shipRenderer.material = _gm.PlayerXInput switch {

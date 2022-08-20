@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Suez {
-    public enum EGameFlow { 
+    public enum EGameFlow {
         MainMenu,
         Field,
         Shop,
@@ -12,10 +12,12 @@ namespace Suez {
         GameEnding
     }
 
-    public enum EStageFlow { 
+    public enum EStageFlow {
+        NotStart,
         L1,
         L2,
         L3,
+        Clear
     }
 
     public class GameManager : Singleton<GameManager> {
@@ -23,9 +25,15 @@ namespace Suez {
         private GameObject player;
         private SpriteManager sprite_manager;
         private ItemManager item_manager;
+        private EnemySpawner _enemySpawner;
         private float playerXInput;
+        private EGameFlow _curGameFlow;
+        private List<EStageFlow> _stages = new();
 
         public float PlayerXInput { get => playerXInput; set => playerXInput = value; }
+        public EGameFlow CurGameFlow { get => _curGameFlow; set => _curGameFlow = value; }
+        public List<EStageFlow> Stages { get => _stages; set => _stages = value; }
+        public EnemySpawner EnemySpawner { get => _enemySpawner; set => _enemySpawner = value; }
 
         /*protected override void Awake() {
             base.Awake();
@@ -47,24 +55,46 @@ namespace Suez {
             PlayerPrefs.SetInt("Slot5", -1);
             PlayerPrefs.SetInt("Slot6", -1);
             PlayerPrefs.SetInt("Slot7", -1);
+
+            InitAwake();
         }
 
-        void OnEnable() {
-            // ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ sceneLoadedï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½.
+        private void OnEnable() {
+            // ¾À ¸Å´ÏÀúÀÇ sceneLoaded¿¡ Ã¼ÀÎÀ» °Ç´Ù.
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
-        // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½É¾î¼­ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½.
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        // Ã¼ÀÎÀ» °É¾î¼­ ÀÌ ÇÔ¼ö´Â ¸Å ¾À¸¶´Ù È£ÃâµÈ´Ù.
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
             Debug.Log("OnSceneLoaded: " + scene.name);
             Debug.Log(mode);
+        }
 
+        private void InitAwake() {
             prefab_manager = GameObject.FindGameObjectWithTag("PrefabManager").GetComponent<PrefabManagerGame>();
             sprite_manager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<SpriteManager>();
             item_manager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerXInput = player.GetComponent<ShipMove>().XInput;
+            InitStage();
         }
+
+        private void InitStage() {
+            if (Stages.Count > 0) Stages.Clear();
+            CurGameFlow = EGameFlow.MainMenu;
+
+            EStageFlow stage1 = EStageFlow.NotStart;
+            EStageFlow stage2 = EStageFlow.NotStart;
+            EStageFlow stage3 = EStageFlow.NotStart;
+
+            Stages.Add(stage1);
+            Stages.Add(stage2);
+            Stages.Add(stage3);
+        }
+
+        public void PlayGame() => EnemySpawner.PlayGame();
+
+        public bool IsCurGameFlowField() => CurGameFlow.Equals(EGameFlow.Field);
 
         public GameObject GetPref(Pref enum_pref) {
             return prefab_manager.GetPref(enum_pref);

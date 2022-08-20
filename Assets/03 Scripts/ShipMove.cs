@@ -10,9 +10,9 @@ namespace Suez {
         public float xmin;
         public float xmax;
 
-        KeyCode key_left = KeyCode.LeftArrow;
-        KeyCode key_right = KeyCode.RightArrow;
-        float xspd;
+        private KeyCode key_left = KeyCode.LeftArrow;
+        private KeyCode key_right = KeyCode.RightArrow;
+        private float xspd;
 
         private int xInput;
         private GameManager _gm;
@@ -23,17 +23,19 @@ namespace Suez {
             _gm = GameManager.Instance;
         }
 
-        void Start() {
+        private void Start() {
             xspd = 0;
             xInput = 0;
         }
 
-        void Update() {
+        private void Update() {
+            if (!_gm.IsCurGameFlowField()) return;
             xInput = (Input.GetKey(key_left) ? -1 : 0) + (Input.GetKey(key_right) ? 1 : 0);
             _gm.PlayerXInput = xInput;
         }
 
-        void FixedUpdate() {
+        private void FixedUpdate() {
+            if (!_gm.IsCurGameFlowField()) return;
             xspd = Mathf.Lerp(xspd, xInput * mspd, rate);
 
             var xnew = Mathf.Clamp(transform.position.x + xspd * Time.fixedDeltaTime, xmin, xmax);

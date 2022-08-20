@@ -2,31 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Suez
-{
-    public class EnemyHp : MonoBehaviour
-    {
+namespace Suez {
+    public class EnemyHp : MonoBehaviour {
         public float hp_max = 100f;
         public float hp;
 
         public int gold_min;
         public int gold_max;
 
-        private void OnEnable()
-        {
+        private void OnEnable() {
             hp = hp_max;
         }
 
-        public void GetDmg(float _amount)
-        {
+        public void GetDmg(float _amount) {
             hp -= _amount;
-            if (hp <= 0)
-            {
+            if (hp <= 0) {
                 gameObject.SetActive(false);
                 GameManager.Instance.GetGold(Random.Range(gold_min, gold_max + 1));
             }
         }
-
+		
         public void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("BulletPlayer"))
@@ -50,5 +45,5 @@ namespace Suez
                 other.gameObject.SetActive(false);
             }
         }
-    } 
+    }
 }

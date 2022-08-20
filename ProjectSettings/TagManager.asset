@@ -10,6 +10,7 @@ TagManager:
   - BulletEnemy
   - PrefabManager
   - SpriteManager
+  - ItemManager
   layers:
   - Default
   - TransparentFX

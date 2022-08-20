@@ -6,8 +6,7 @@ namespace Suez
 {
     public class ShipHp : MonoBehaviour
     {
-        public float hp_max = 10f;
-        public float hp;
+        GameManager gm;
 
         public float invi_time_max = 0.5f;
         float invi_time;
@@ -15,10 +14,24 @@ namespace Suez
 
         public float def = 0f;
 
+        float GetDef()
+        {
+            float s = 0f;
+
+            for (int i = 0; i < 8; i++)
+            {
+                var item = GameManager.Instance.GetItemBySlot(i);
+                if (item == null) continue;
+                s += item.GetDefBonus();
+            }
+            return s;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
-            hp = hp_max;
+            GameManager gm; = GameManager.Instance;
+
             invi = false;
             invi_time = 0;
         }
@@ -35,20 +48,19 @@ namespace Suez
                 }
             }
 
-            Debug.Log(invi_time.ToString());
+            //Debug.Log(invi_time.ToString());
         }
 
         public void GetDmg(float amount)
         {
             if (invi == false)
             {
-                hp -= amount * (1f - def * 0.01f);
-                if (hp <= 0) Debug.Log("Game Over");
+                gm.ReduceHp( amount * Mathf.Max(1f - GetDef() * 0.01f, 0.2f) );
 
                 invi = true;
                 invi_time = invi_time_max;
 
-                Debug.Log("Hit! Hp:" + hp.ToString());
+                //Debug.Log("Hit! Hp:" + hp.ToString());
             }
         }
 

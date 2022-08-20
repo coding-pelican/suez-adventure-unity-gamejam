@@ -115,6 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp_max: 7
   hp: 0
+  gold_min: 3
+  gold_max: 5
 --- !u!114 &8349570455832322312
 MonoBehaviour:
   m_ObjectHideFlags: 0

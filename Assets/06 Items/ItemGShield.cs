@@ -7,6 +7,11 @@ namespace Suez
 {
     class ItemGShield : ItemBase
     {
+        public override int Id => 0;
+        public override string name => "대방패";
+        public override string desc => "방어력+30";
+        public override int price => 100;
+
         public override Sprite GetSpr()
         {
             return GameManager.Instance.GetSpr(0);

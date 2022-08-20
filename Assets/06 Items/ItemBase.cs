@@ -7,6 +7,11 @@ namespace Suez
 {
     public class ItemBase
     {
+        public virtual int Id => -1;
+        public virtual string name => "아이템 이름";
+        public virtual string desc => "아이템 설명";
+        public virtual int price => 100;
+
         public virtual Sprite GetSpr()
         {
             return null;
@@ -51,5 +56,5 @@ namespace Suez
         {
             return;
         }
-    } 
+    }
 }

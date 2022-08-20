@@ -53,7 +53,7 @@ namespace Suez {
 
                 //Debug.Log("Hit! Hp:" + hp.ToString());
 
-                gm.PlaySfx(0);
+                _gm.PlaySfx(0);
             }
         }
 

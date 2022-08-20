@@ -21,7 +21,5 @@ namespace Suez
         {
             return 3;
         }
-
-        }
     }
 }

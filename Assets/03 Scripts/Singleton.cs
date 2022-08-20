@@ -11,7 +11,7 @@ namespace Suez {
                 if (instance == null) {
                     instance = FindObjectOfType<T>();
                     if (instance == null) {
-                        GameObject obj = new GameObject {
+                        GameObject obj = new() {
                             name = typeof(T).Name
                         };
                         instance = obj.AddComponent<T>();

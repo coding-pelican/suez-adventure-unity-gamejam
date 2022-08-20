@@ -15,7 +15,7 @@ namespace Suez
         public GameObject prefab_bullet_player;
         public GameObject prefab_bullet_enemy;
 
-        Dictionary<Pref, GameObject> dict;
+        Dictionary<Pref, GameObject> dict = new();
 
         private void Awake()
         {

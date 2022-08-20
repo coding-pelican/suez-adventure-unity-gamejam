@@ -2,29 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHp : MonoBehaviour
+namespace Suez
 {
-    public float hp_max = 100f;
-    public float hp;
-
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyHp : MonoBehaviour
     {
-        hp = hp_max;
-    }
+        public float hp_max = 100f;
+        public float hp;
 
-    public void GetDmg(float _amount)
-    {
-        hp -= _amount;
-        if (hp <= 0) Destroy(gameObject);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("BulletPlayer"))
+        // Start is called before the first frame update
+        void Start()
         {
-            GetDmg(other.gameObject.GetComponent<BulletPlayer>().dmg);
-            Destroy(other.gameObject);
+            hp = hp_max;
         }
-    }
+
+        public void GetDmg(float _amount)
+        {
+            hp -= _amount;
+            if (hp <= 0) Destroy(gameObject);
+        }
+
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("BulletPlayer"))
+            {
+                GetDmg(other.gameObject.GetComponent<BulletPlayer>().dmg);
+                Destroy(other.gameObject);
+            }
+        }
+    } 
 }

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamMove : MonoBehaviour
+namespace Suez
 {
-    public Transform ship_ts;
-    public float rate = 0.1f;
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public class CamMove : MonoBehaviour
     {
-        var newx = Mathf.Lerp(transform.position.x, ship_ts.position.x, rate);
+        public Transform ship_ts;
+        public float rate = 0.1f;
 
-        transform.position = new Vector3(newx, transform.position.y, transform.position.z);
-    }
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            var newx = Mathf.Lerp(transform.position.x, ship_ts.position.x, rate);
+
+            transform.position = new Vector3(newx, transform.position.y, transform.position.z);
+        }
+    } 
 }

@@ -30,6 +30,6 @@ public class BulletEnemy : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         var tag = collision.gameObject.tag;
-        if (tag == "side") Destroy(gameObject);
+        if (tag == "Side") Destroy(gameObject);
     }
 }

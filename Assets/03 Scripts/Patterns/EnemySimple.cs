@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Suez
 {
-    public class EnemyPattern : MonoBehaviour
+    public class EnemySimple : MonoBehaviour
     {
         IPattern pattern = null;
         IMove move = null;

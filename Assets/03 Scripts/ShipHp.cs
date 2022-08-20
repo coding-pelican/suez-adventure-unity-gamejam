@@ -13,6 +13,8 @@ namespace Suez
         float invi_time;
         bool invi;
 
+        public float def = 0f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -40,7 +42,7 @@ namespace Suez
         {
             if (invi == false)
             {
-                hp -= amount;
+                hp -= amount * (1f - def * 0.01f);
                 if (hp <= 0) Debug.Log("Game Over");
 
                 invi = true;

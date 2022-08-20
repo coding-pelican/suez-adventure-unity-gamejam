@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Suez
 {
-    public class EnemyPattern : MonoBehaviour
+    public class EnemyLaser : MonoBehaviour
     {
         IPattern pattern = null;
         IMove move = null;
@@ -14,9 +14,9 @@ namespace Suez
         // Start is called before the first frame update
         private void OnEnable()
         {
-            pattern = new PatternSimple();
+            pattern = new PatternLaser();
             var _x = Random.Range(-3f, 3f);
-            move = new MoveApproach(8f, 0f, new Vector3(_x, 0.5f, 50f));
+            move = new MoveApproach(6f, 0f, new Vector3(_x, 0.5f, 50f));
 
             pattern.Init(transform);
             move.Init(transform);

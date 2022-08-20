@@ -10,7 +10,7 @@ namespace Suez
         public float time_stop = 1f;
         public float time_shot = 1.5f;
 
-        public float dmg = 3f;
+        public float dmg = 10f;
         public float range = 0.3f;
 
         float time = 0f;
@@ -34,12 +34,16 @@ namespace Suez
             var player = GameObject.FindGameObjectWithTag("Player");
             player_hp = player.GetComponent<ShipHp>();
             target = player.transform;
+            lockon = target.position;
+
+            lr.SetPosition(0, from.position);
+            lr.SetPosition(1, lockon + Vector3.back * 1f + Vector3.down * 0.5f);
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            if(from == null)
+            if (!from.gameObject.activeSelf)
             {
                 Destroy(gameObject);
                 return;
@@ -64,7 +68,7 @@ namespace Suez
             else Destroy(gameObject);
 
             lr.SetPosition(0, from.position);
-            lr.SetPosition(1, lockon);
+            lr.SetPosition(1, lockon + Vector3.back * 1f + Vector3.down * 0.5f);
         }
-    } 
+    }
 }

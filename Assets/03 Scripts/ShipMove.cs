@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Suez
-{
-    public class ShipMove : MonoBehaviour
-    {
+namespace Suez {
+    public class ShipMove : MonoBehaviour {
         public float mspd = 3f;
         public float rate = 0.1f;
 
@@ -16,24 +14,27 @@ namespace Suez
         KeyCode key_right = KeyCode.RightArrow;
         float xspd;
 
-        float xx;
+        private int xInput;
+        private GameManager _gm;
 
-        // Start is called before the first frame update
-        void Start()
-        {
+        public float XInput { get => xInput; }
+
+        private void Awake() {
+            _gm = GameManager.Instance;
+        }
+
+        void Start() {
             xspd = 0;
-            xx = 0;
+            xInput = 0;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            xx = (Input.GetKey(key_left) ? -1 : 0) + (Input.GetKey(key_right) ? 1 : 0);
+        void Update() {
+            xInput = (Input.GetKey(key_left) ? -1 : 0) + (Input.GetKey(key_right) ? 1 : 0);
+            _gm.PlayerXInput = xInput;
         }
 
-        void FixedUpdate()
-        {
-            xspd = Mathf.Lerp(xspd, xx * mspd, rate);
+        void FixedUpdate() {
+            xspd = Mathf.Lerp(xspd, xInput * mspd, rate);
 
             var xnew = Mathf.Clamp(transform.position.x + xspd * Time.fixedDeltaTime, xmin, xmax);
 

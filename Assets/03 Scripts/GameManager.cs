@@ -8,10 +8,18 @@ namespace Suez
     public class GameManager : Singleton<GameManager>
     {
 
+<<<<<<< Updated upstream
         PrefabManagerGame prefab_manager;
         SpriteManager sprite_manager;
         ItemManager item_manager;
         GameObject player;
+=======
+        private PrefabManagerGame prefab_manager;
+        private GameObject player;
+        private float playerXInput;
+
+        public float PlayerXInput { get => playerXInput; set => playerXInput = value; }
+>>>>>>> Stashed changes
 
         /*protected override void Awake() {
             base.Awake();
@@ -52,6 +60,7 @@ namespace Suez
             sprite_manager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<SpriteManager>();
             item_manager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
             player = GameObject.FindGameObjectWithTag("Player");
+            PlayerXInput = player.gameObject.GetComponent<ShipMove>().XInput;
         }
 
         public GameObject GetPref(Pref enum_pref)

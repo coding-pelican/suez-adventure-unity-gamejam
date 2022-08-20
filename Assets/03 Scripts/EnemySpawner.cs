@@ -15,10 +15,10 @@ namespace Suez {
 
         public GameObject[] enemyType;
         public int objCnt;
-        public float spawningTimeRate = 1f;
+        public float spawningTimeRate = 4.6f;
         public bool isSpawningTimeRandom = false;
-        public float minSpawningTime = 0.25f;
-        public float maxSpawningTime = 2f;
+        public float minSpawningTime = 2.6f;
+        public float maxSpawningTime = 6.6f;
 
         private void Start() {
             _gm = GameManager.Instance;

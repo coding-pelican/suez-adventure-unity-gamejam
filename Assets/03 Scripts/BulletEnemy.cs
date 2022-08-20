@@ -2,34 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemy : MonoBehaviour
+namespace Suez
 {
-    public float spd;
-    public float dir;
-
-    public float dmg;
-
-    public float zmin;
-    public float zmax;
-
-    public void SetData(float _spd, float _dir, float _dmg)
+    public class BulletEnemy : MonoBehaviour
     {
-        spd = _spd;
-        dir = _dir;
-        dmg = _dmg;
-    }
+        public float spd;
+        public float dir;
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += (Vector3.right * Mathf.Cos(dir) + Vector3.forward * Mathf.Sin(dir)) * spd * Time.deltaTime;
+        public float dmg;
 
-        if (transform.position.z < zmin || transform.position.z > zmax) Destroy(gameObject);
-    }
+        public float zmin;
+        public float zmax;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        var tag = collision.gameObject.tag;
-        if (tag == "Side") Destroy(gameObject);
-    }
+        public void SetData(float _spd, float _dir, float _dmg)
+        {
+            spd = _spd;
+            dir = _dir;
+            dmg = _dmg;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            transform.position += (Vector3.right * Mathf.Cos(dir) + Vector3.forward * Mathf.Sin(dir)) * spd * Time.deltaTime;
+
+            if (transform.position.z < zmin || transform.position.z > zmax) Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            var tag = collision.gameObject.tag;
+            if (tag == "Side") Destroy(gameObject);
+        }
+    } 
 }

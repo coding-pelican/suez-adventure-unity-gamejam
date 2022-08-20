@@ -2,54 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipHp : MonoBehaviour
+namespace Suez
 {
-    public float hp_max = 10f;
-    public float hp;
-
-    public float invi_time_max;
-    float invi_time;
-    bool invi;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ShipHp : MonoBehaviour
     {
-        hp = hp_max;
-        invi = false;
-        invi_time = 0;
-    }
+        public float hp_max = 10f;
+        public float hp;
 
-    private void FixedUpdate()
-    {
-        if (invi_time > 0)
+        public float invi_time_max;
+        float invi_time;
+        bool invi;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            invi_time -= Time.deltaTime;
-            if(invi_time <= 0)
+            hp = hp_max;
+            invi = false;
+            invi_time = 0;
+        }
+
+        private void FixedUpdate()
+        {
+            if (invi_time > 0)
             {
-                invi_time = 0f;
-                invi = false;
+                invi_time -= Time.deltaTime;
+                if (invi_time <= 0)
+                {
+                    invi_time = 0f;
+                    invi = false;
+                }
             }
         }
-    }
 
-    void GetDmg(float amount)
-    {
-        if (invi == false)
+        void GetDmg(float amount)
         {
-            hp -= amount;
-            if (hp <= 0) Debug.Log("Game Over");
+            if (invi == false)
+            {
+                hp -= amount;
+                if (hp <= 0) Debug.Log("Game Over");
 
-            invi = true;
-            invi_time = invi_time_max;
+                invi = true;
+                invi_time = invi_time_max;
+            }
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("BulletEnemy"))
+        private void OnTriggerEnter(Collider other)
         {
-            GetDmg(other.gameObject.GetComponent<BulletEnemy>().dmg);
-            Destroy(other.gameObject);
+            if (other.gameObject.CompareTag("BulletEnemy"))
+            {
+                GetDmg(other.gameObject.GetComponent<BulletEnemy>().dmg);
+                Destroy(other.gameObject);
+            }
         }
-    }
+    } 
 }

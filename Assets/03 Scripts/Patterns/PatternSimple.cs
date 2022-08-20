@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace Suez
 {
-    public class PatternSimple : MonoBehaviour, IPattern
+    public class PatternSimple : IPattern
     {
-        public GameObject game_manager;
+        GameManager gm;
 
         GameObject pref_bullet;
 
         public void Init(Vector3 origin)
         {
-            pref_bullet = game_manager.GetComponent<GameManager>().GetPref(Pref.BulletEnemy);
+            gm = GameManager.Instance;
+
+            pref_bullet = gm.GetPref(Pref.BulletEnemy);
         }
 
         public void Step(int frame, Vector3 origin)
@@ -21,8 +23,7 @@ namespace Suez
             {
                 if(frame % (50*6) == i*40)
                 {
-                    var bullet = Instantiate(pref_bullet);
-                    bullet.GetComponent<BulletEnemy>().SetData(5f, -Mathf.PI * 0.5f, 1f);
+                    gm.ShotBulletEnemy(origin, 5f, -Mathf.PI*0.5f, 1f);
                 }
             }
         }

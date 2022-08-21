@@ -105,13 +105,13 @@ namespace Suez
                 if (frame % (50 * 3) == i * 15 + 50)
                 {
                     var dir = Vector3.Angle(Vector3.right, player_ts.position - (transform.position + Vector3.right * 3f)) * -Mathf.Deg2Rad;
-                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir - 0.42f, 1f);
-                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir, 1f);
-                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir + 0.42f, 1f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir - 0.42f, 5f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir, 5f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.right * 3f, 9f, dir + 0.42f, 5f);
                     dir = Vector3.Angle(Vector3.right, player_ts.position - (transform.position + Vector3.left * 3f)) * -Mathf.Deg2Rad;
-                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir - 0.42f, 1f);
-                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir, 1f);
-                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir + 0.42f, 1f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir - 0.42f, 5f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir, 5f);
+                    gm.ShotBulletEnemy(transform.position + Vector3.left * 3f, 9f, dir + 0.42f, 5f);
                 }
             }
 

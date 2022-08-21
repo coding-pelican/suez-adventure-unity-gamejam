@@ -10,8 +10,15 @@ namespace Suez {
         public int gold_min;
         public int gold_max;
 
+        public Transform hp_bar;
+
         private void OnEnable() {
             hp = hp_max;
+        }
+
+        private void FixedUpdate()
+        {
+            hp_bar.localScale = new Vector3(0.2f * hp / hp_max, 1f, 0.015f);
         }
 
         public void GetDmg(float _amount) {

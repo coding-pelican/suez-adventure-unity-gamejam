@@ -16,6 +16,7 @@ namespace Suez {
                 gameObject.SetActive(false);
             }
             _gm.PlayGame();
+            _gm.PlayBgm(0);
         }
 
         public void OnClickExit() {

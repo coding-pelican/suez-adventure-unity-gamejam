@@ -219,7 +219,7 @@ namespace Suez {
         {
             PlayerPrefs.SetFloat("Progress", PlayerPrefs.GetFloat("Progress") + amount);
 
-            if (PlayerPrefs.GetFloat("Progress") >= 60f)
+            if (PlayerPrefs.GetFloat("Progress") >= 30f)
             {
                 Stages[0] += 1;
                 if(Stages[0] == EStageFlow.L3)
@@ -238,8 +238,8 @@ namespace Suez {
                 {
                     Debug.Log("스테이지 클리어!");
                     if(!_enemySpawner.gameObject.activeSelf) _enemySpawner.gameObject.SetActive(true);
-                    _enemySpawner.minSpawningTime -= 0.75f;
-                    _enemySpawner.maxSpawningTime -= 0.75f;
+                    _enemySpawner.minSpawningTime -= 0.5f;
+                    _enemySpawner.maxSpawningTime -= 0.5f;
                     if(Boss.activeSelf) Boss.SetActive(false);
                     _enemySpawner.SStart();
 

@@ -2456,7 +2456,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Credits\nGame Designer\n- Mun Junseo\n- Sin Minsung\nGame Programmer\n-
     Kim Minjun\n- Kim Gyeongtae\nArtist\n- Im Jaehyun\n\nRef.\n\uAC8C\uC784 \uBCF4\uC2A4
-    \uB514\uC790\uC778\n- Project Moon "
+    \uB514\uC790\uC778\n- Project Moon \n\uAC8C\uC784 \uC74C\uC545\n- Xenonauts OST
+    - Air Combat"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d9b890c842d0ca4ab528aa96b47389c, type: 2}
   m_sharedMaterial: {fileID: 3920524212933428096, guid: 7d9b890c842d0ca4ab528aa96b47389c, type: 2}

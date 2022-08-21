@@ -10,6 +10,8 @@ namespace Suez {
         float invi_time;
         bool invi;
 
+        public Transform hp_bar;
+
         float GetDef()
         {
             float s = 0f;
@@ -43,6 +45,8 @@ namespace Suez {
 
             if(_gm.Stages[0] != EStageFlow.L3)
                 _gm.AddProgress(Time.fixedDeltaTime);
+
+            hp_bar.localScale = new Vector3(0.2f*(PlayerPrefs.GetFloat("Hp")/ PlayerPrefs.GetFloat("HpMax")), 1f, 0.015f);
 
             //Debug.Log(invi_time.ToString());
         }

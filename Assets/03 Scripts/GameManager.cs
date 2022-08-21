@@ -41,6 +41,27 @@ namespace Suez {
         public List<EStageFlow> Stages { get => _stages; set => _stages = value; }
         public EnemySpawner EnemySpawner { get => _enemySpawner; set => _enemySpawner = value; }
 
+
+        public void Init()
+        {
+            PlayerPrefs.SetFloat("Hp", 80f);
+            PlayerPrefs.SetFloat("HpMax", 80f);
+            PlayerPrefs.SetInt("Gold", 0);
+            PlayerPrefs.SetInt("Slot0", 0);
+            PlayerPrefs.SetInt("Slot1", -1);
+            PlayerPrefs.SetInt("Slot2", -1);
+            PlayerPrefs.SetInt("Slot3", -1);
+            PlayerPrefs.SetInt("Slot4", -1);
+            PlayerPrefs.SetInt("Slot5", -1);
+            PlayerPrefs.SetInt("Slot6", -1);
+            PlayerPrefs.SetInt("Slot7", -1);
+
+            PlayerPrefs.SetFloat("Progress", 0f);
+
+            CurGameFlow = EGameFlow.MainMenu;
+        }
+
+
         /*protected override void Awake() {
             base.Awake();
             dict.Add(Pref.BulletPlayer, prefab_bullet_player);
@@ -134,6 +155,7 @@ namespace Suez {
             if(hp_new <= 0)
             {
                 Debug.Log("게임오버!");
+                CurGameFlow = EGameFlow.GameOver;
             }
         }
 
@@ -210,6 +232,7 @@ namespace Suez {
                 {
                     //클리어 화면 표시
                     Debug.Log("클리어!");
+                    CurGameFlow = EGameFlow.GameEnding;
                 }
                 else
                 {
@@ -220,10 +243,10 @@ namespace Suez {
                     if(Boss.activeSelf) Boss.SetActive(false);
                     _enemySpawner.SStart();
 
-                    if(Stages[0] == EStageFlow.L2)
+                    /*if(Stages[0] == EStageFlow.L2)
                     {
                         PlayerPrefs.SetInt("Slot0", Random.Range(0, 5));
-                    }
+                    }*/
                 }
                 ResetProgress();
             }

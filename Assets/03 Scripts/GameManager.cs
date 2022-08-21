@@ -197,7 +197,7 @@ namespace Suez {
         {
             PlayerPrefs.SetFloat("Progress", PlayerPrefs.GetFloat("Progress") + amount);
 
-            if (PlayerPrefs.GetFloat("Progress") >= 5f)
+            if (PlayerPrefs.GetFloat("Progress") >= 60f)
             {
                 Stages[0] += 1;
                 if(Stages[0] == EStageFlow.L3)
@@ -219,6 +219,11 @@ namespace Suez {
                     _enemySpawner.maxSpawningTime -= 0.75f;
                     if(Boss.activeSelf) Boss.SetActive(false);
                     _enemySpawner.SStart();
+
+                    if(Stages[0] == EStageFlow.L2)
+                    {
+                        PlayerPrefs.SetInt("Slot0", Random.Range(0, 5));
+                    }
                 }
                 ResetProgress();
             }
